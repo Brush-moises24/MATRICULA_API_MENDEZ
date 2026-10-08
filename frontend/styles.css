@@ -1,0 +1,1209 @@
+/* ============================================================
+   Sistema Académico — estilos del frontend
+   Paleta y tokens siguiendo la guía de diseño de datos del curso:
+   superficies, tinta y colores de estado con roles fijos.
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+  --pagina:          #f9f9f7;
+  --superficie:      #fcfcfb;
+  --tinta-primaria:  #0b0b0b;
+  --tinta-secundaria:#52514e;
+  --tinta-tenue:      #898781;
+  --borde:           rgba(11, 11, 11, 0.10);
+  --linea:           #e1e0d9;
+
+  --acento:          #2a78d6;
+  --acento-oscuro:   #184f95;
+  --acento-suave:    #eaf1fb;
+
+  --estado-bueno:      #0ca30c;
+  --estado-bueno-fondo:#e6f6e6;
+  --estado-alerta:     #fab219;
+  --estado-critico:    #d03b3b;
+  --estado-critico-fondo:#fbe9e9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --pagina:          #0d0d0d;
+    --superficie:      #1a1a19;
+    --tinta-primaria:  #ffffff;
+    --tinta-secundaria:#c3c2b7;
+    --tinta-tenue:      #898781;
+    --borde:           rgba(255, 255, 255, 0.10);
+    --linea:           #2c2c2a;
+
+    --acento:          #3987e5;
+    --acento-oscuro:   #86b6ef;
+    --acento-suave:    #16233a;
+
+    --estado-bueno:      #0ca30c;
+    --estado-bueno-fondo:#123312;
+    --estado-alerta:     #fab219;
+    --estado-critico:    #e66767;
+    --estado-critico-fondo:#3a1a1a;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--pagina);
+  color: var(--tinta-primaria);
+}
+
+.oculto { display: none !important; }
+
+.etiqueta {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--tinta-tenue);
+  margin: 0 0 6px;
+}
+
+h1 { margin: 0; font-size: 26px; font-weight: 700; }
+h2 { margin: 0; font-size: 18px; font-weight: 700; }
+
+/* ---------------------- Vista: login ---------------------- */
+
+.vista-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.tarjeta-login {
+  width: 100%;
+  max-width: 380px;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  padding: 32px;
+  box-shadow: 0 8px 30px rgba(11, 11, 11, 0.08);
+}
+
+.subtitulo {
+  color: var(--tinta-secundaria);
+  margin: 0 0 24px;
+  font-size: 14px;
+}
+
+.tarjeta-login label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.tarjeta-login input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: var(--pagina);
+  color: var(--tinta-primaria);
+  font-size: 14px;
+}
+
+.tarjeta-login input:focus {
+  outline: none;
+  border-color: var(--acento);
+  box-shadow: 0 0 0 3px var(--acento-suave);
+}
+
+#boton-entrar {
+  width: 100%;
+  padding: 11px;
+  border: none;
+  border-radius: 8px;
+  background: var(--acento);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+#boton-entrar:hover { background: var(--acento-oscuro); }
+#boton-entrar:disabled { opacity: 0.6; cursor: default; }
+
+.mensaje-error {
+  min-height: 18px;
+  color: var(--estado-critico);
+  font-size: 13px;
+  margin: 14px 0 0;
+}
+
+.ayuda-usuarios {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--linea);
+  font-size: 12px;
+  color: var(--tinta-tenue);
+}
+
+.ayuda-usuarios code {
+  background: var(--pagina);
+  border: 1px solid var(--borde);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+/* -------------------- Vista: dashboard -------------------- */
+
+.barra-superior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 32px;
+  background: var(--superficie);
+  border-bottom: 1px solid var(--linea);
+  flex-wrap: wrap;
+}
+
+.acciones-barra {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chip-usuario {
+  font-size: 13px;
+  color: var(--tinta-secundaria);
+  background: var(--pagina);
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+
+.boton-secundario {
+  padding: 8px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: var(--superficie);
+  color: var(--tinta-primaria);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton-secundario:hover { border-color: var(--acento); color: var(--acento); }
+
+.contenido {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 28px 32px 48px;
+}
+
+.fila-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 860px) {
+  .fila-tarjetas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) {
+  .fila-tarjetas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.tarjeta-kpi {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 16px 14px;
+  text-align: left;
+}
+
+.tarjeta-kpi .valor {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.1;
+  font-variant-numeric: proportional-nums;
+}
+
+.tarjeta-kpi .etiqueta-kpi {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--tinta-secundaria);
+  line-height: 1.3;
+}
+
+.texto-periodo {
+  margin: 14px 2px 28px;
+  font-size: 13px;
+  color: var(--tinta-tenue);
+}
+
+/* -------------------- Módulos del sistema -------------------- */
+
+.tarjeta-modulos {
+  margin-bottom: 20px;
+  padding: 22px;
+}
+
+.encabezado-modulos {
+  margin-bottom: 18px;
+}
+
+.encabezado-modulos h2 {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.descripcion-modulos {
+  margin: 0;
+  color: var(--tinta-secundaria);
+  font-size: 13px;
+}
+
+.rejilla-modulos {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.modulo-card {
+  min-height: 126px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  background: var(--pagina);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.modulo-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--acento);
+  box-shadow: 0 5px 16px rgba(11, 11, 11, 0.07);
+}
+
+.modulo-icono {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--acento-suave);
+  font-size: 20px;
+}
+
+.modulo-contenido h3 {
+  margin: 0 0 5px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.modulo-contenido p {
+  margin: 0;
+  color: var(--tinta-secundaria);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+@media (max-width: 1050px) {
+  .rejilla-modulos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .rejilla-modulos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 430px) {
+  .rejilla-modulos {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tarjeta {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.encabezado-tarjeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+#campo-buscar {
+  padding: 8px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: var(--pagina);
+  color: var(--tinta-primaria);
+  font-size: 13px;
+  min-width: 240px;
+}
+
+#campo-buscar:focus {
+  outline: none;
+  border-color: var(--acento);
+  box-shadow: 0 0 0 3px var(--acento-suave);
+}
+
+.contenedor-tabla { overflow-x: auto; }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+
+thead th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tinta-tenue);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0 10px 10px;
+  border-bottom: 1px solid var(--linea);
+}
+
+tbody td {
+  padding: 10px 10px;
+  border-bottom: 1px solid var(--linea);
+  color: var(--tinta-primaria);
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--pagina); }
+
+.pastilla-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pastilla-estado::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.pastilla-activo {
+  color: var(--estado-bueno);
+  background: var(--estado-bueno-fondo);
+}
+.pastilla-activo::before { background: var(--estado-bueno); }
+
+.pastilla-neutral {
+  color: var(--tinta-secundaria);
+  background: var(--pagina);
+  border: 1px solid var(--borde);
+}
+.pastilla-neutral::before { background: var(--tinta-tenue); }
+
+.texto-vacio {
+  text-align: center;
+  color: var(--tinta-tenue);
+  padding: 24px 0 4px;
+  font-size: 13px;
+}
+
+/* ------------------- Formulario de estudiante ------------------- */
+
+.tarjeta-formulario { margin-bottom: 20px; }
+
+.rejilla-formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 16px;
+}
+
+@media (max-width: 640px) {
+  .rejilla-formulario { grid-template-columns: 1fr; }
+}
+
+.campo label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: var(--pagina);
+  color: var(--tinta-primaria);
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: none;
+  border-color: var(--acento);
+  box-shadow: 0 0 0 3px var(--acento-suave);
+}
+
+.acciones-formulario {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+#boton-guardar-estudiante {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: var(--acento);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#boton-guardar-estudiante:hover { background: var(--acento-oscuro); }
+#boton-guardar-estudiante:disabled { opacity: 0.6; cursor: default; }
+
+#mensaje-formulario {
+  margin: 12px 0 0;
+}
+
+.mensaje-exito {
+  color: var(--estado-bueno);
+  font-size: 13px;
+  margin: 12px 0 0;
+  min-height: 18px;
+}
+
+/* ------------------- Acciones en la tabla ------------------- */
+
+.acciones-fila {
+  display: flex;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.boton-icono {
+  padding: 5px 10px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: var(--superficie);
+  color: var(--tinta-secundaria);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton-icono:hover { border-color: var(--acento); color: var(--acento); }
+
+.boton-icono.peligro:hover {
+  border-color: var(--estado-critico);
+  color: var(--estado-critico);
+}
+
+/* -------------------- Vista de módulos -------------------- */
+.tarjeta-modulo-vista { margin-bottom: 20px; }
+.encabezado-modulo-vista { align-items: flex-start; }
+.acciones-modulo { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+.modulo-card { cursor:pointer; user-select:none; }
+.modulo-card:focus { outline: 2px solid var(--acento); outline-offset: 2px; }
+.contenedor-modulo { overflow-x:auto; }
+.tabla-modulo { width:100%; border-collapse:collapse; min-width:680px; }
+.tabla-modulo th, .tabla-modulo td { padding:11px 10px; border-bottom:1px solid var(--linea); text-align:left; font-size:13px; vertical-align:top; }
+.tabla-modulo th { color:var(--tinta-secundaria); font-weight:700; background:var(--pagina); }
+.tabla-vacia { padding:24px; text-align:center; color:var(--tinta-secundaria); border:1px dashed var(--borde); border-radius:10px; }
+.detalle-reportes { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.reporte-item { border:1px solid var(--borde); border-radius:10px; padding:15px; background:var(--pagina); }
+.reporte-item strong { display:block; font-size:24px; margin-bottom:5px; }
+@media(max-width:700px){ .encabezado-modulo-vista{flex-direction:column;} .acciones-modulo{justify-content:flex-start;} .detalle-reportes{grid-template-columns:1fr 1fr;} }
+@media(max-width:430px){ .detalle-reportes{grid-template-columns:1fr;} }
+
+/* ============================================================
+   Dashboard profesional — organización lateral/horizontal
+   Los estilos anteriores se conservan; estas reglas solo mejoran
+   la presentación del frontend sin tocar la API.
+   ============================================================ */
+:root {
+  --acento: #2563eb;
+  --acento-oscuro: #1d4ed8;
+  --acento-suave: #eff6ff;
+  --sombra: 0 10px 30px rgba(15, 23, 42, .07);
+  --radio: 16px;
+}
+
+body { background: #f4f7fb; }
+.vista-dashboard { min-height: 100vh; }
+.barra-superior {
+  position: sticky; top: 0; z-index: 20;
+  padding: 16px 28px;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(15,23,42,.06);
+}
+.barra-superior h1 { font-size: 28px; letter-spacing: -.02em; }
+.contenido { max-width: 1440px; padding: 26px 28px 56px; }
+.chip-usuario { background:#eef4ff; color:#1d4ed8; border:1px solid #dbe7ff; font-weight:700; }
+.boton-secundario { background:#fff; transition:.18s ease; }
+
+.fila-tarjetas { grid-template-columns: repeat(6,minmax(150px,1fr)); gap:14px; }
+.tarjeta-kpi {
+  position:relative; overflow:hidden; min-height:108px; padding:18px;
+  border:0; border-radius:15px; background:#fff; box-shadow:var(--sombra);
+}
+.tarjeta-kpi::after { content:""; position:absolute; right:-20px; bottom:-28px; width:90px; height:90px; border-radius:50%; background:var(--acento-suave); }
+.tarjeta-kpi .valor { position:relative; z-index:1; font-size:31px; font-weight:800; color:#172033; }
+.tarjeta-kpi .etiqueta-kpi { position:relative; z-index:1; font-weight:600; color:#64748b; }
+
+.tarjeta-modulos, .tarjeta-modulo-vista, .tarjeta-formulario, .tarjeta-tabla {
+  border:0; border-radius:var(--radio); box-shadow:var(--sombra); background:#fff;
+}
+.tarjeta-modulos { padding:24px; }
+.encabezado-modulos { align-items:flex-end; }
+.encabezado-modulos h2 { font-size:23px; color:#172033; }
+.rejilla-modulos { grid-template-columns:repeat(5,minmax(0,1fr)); gap:14px; }
+.modulo-card {
+  position:relative; min-height:132px; padding:17px; border:1px solid #e7edf5;
+  border-radius:14px; background:#fff; box-shadow:0 3px 10px rgba(15,23,42,.035);
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.modulo-card:hover { transform:translateY(-4px); border-color:#bfdbfe; box-shadow:0 12px 25px rgba(15,23,42,.09); }
+.modulo-card::before { content:""; position:absolute; left:0; top:0; bottom:0; width:4px; border-radius:14px 0 0 14px; background:#2563eb; }
+.modulo-icono { width:44px; height:44px; border-radius:12px; background:#eff6ff; font-size:22px; }
+.modulo-contenido h3 { font-size:15px; color:#172033; }
+.modulo-contenido p { color:#64748b; }
+.modulo-carreras::before { background:#2563eb; } .modulo-estudiantes::before { background:#16a34a; }
+.modulo-docentes::before { background:#f97316; } .modulo-asignaturas::before { background:#7c3aed; }
+.modulo-periodos::before { background:#eab308; } .modulo-aulas::before { background:#0891b2; }
+.modulo-secciones::before { background:#dc2626; } .modulo-matriculas::before { background:#16a34a; }
+.modulo-calificaciones::before { background:#8b5cf6; } .modulo-reportes::before { background:#0d9488; }
+
+.tarjeta-modulo-vista { padding:24px; margin-top:18px; }
+.modulo-toolbar, .form-modulo-titulo { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:18px; }
+.modulo-toolbar strong, .form-modulo-titulo strong { display:block; font-size:17px; color:#172033; }
+.modulo-toolbar span, .form-modulo-titulo small { display:block; margin-top:4px; color:#64748b; font-size:12px; }
+.boton-primario {
+  border:0; border-radius:9px; padding:10px 16px; background:#2563eb; color:#fff;
+  font-weight:700; cursor:pointer; transition:.18s ease;
+}
+.boton-primario:hover { background:#1d4ed8; transform:translateY(-1px); }
+.form-modulo-dinamico { margin-bottom:20px; padding:18px; border:1px solid #e5eaf2; border-radius:13px; background:#f8fafc; }
+.modulo-form-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.campo-modulo label { display:block; margin-bottom:6px; color:#334155; font-size:12px; font-weight:700; }
+.campo-modulo input, .campo-modulo select {
+  width:100%; min-height:40px; padding:9px 11px; border:1px solid #dbe2ea; border-radius:9px;
+  background:#fff; color:#172033; font:inherit; font-size:13px;
+}
+.campo-modulo input:focus, .campo-modulo select:focus { outline:none; border-color:#60a5fa; box-shadow:0 0 0 3px #dbeafe; }
+.check-modulo { display:flex !important; align-items:center; gap:8px; min-height:40px; font-size:13px !important; }
+.check-modulo input { width:auto; min-height:auto; }
+.mensaje-formulario-dinamico { min-height:18px; margin:10px 0 0; font-size:13px; }
+.mensaje-formulario-dinamico.exito { color:#15803d; } .mensaje-formulario-dinamico.error { color:#dc2626; }
+.modulo-tabla-wrap { border:1px solid #e5eaf2; border-radius:12px; background:#fff; }
+.tabla-modulo { min-width:820px; }
+.tabla-modulo th { background:#f8fafc; color:#64748b; }
+.tabla-modulo td { color:#334155; }
+.acciones-fila { align-items:center; }
+
+.reporte-resumen { display:grid; grid-template-columns:repeat(6,minmax(120px,1fr)); gap:12px; margin-bottom:16px; }
+.reporte-resumen > div { padding:16px; border:1px solid #e5eaf2; border-radius:12px; background:#f8fafc; }
+.reporte-resumen strong { display:block; font-size:25px; color:#172033; }
+.reporte-resumen span { display:block; margin-top:4px; font-size:12px; color:#64748b; }
+.reportes-herramientas { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+.reporte-tool { padding:16px; border:1px solid #e5eaf2; border-radius:13px; background:#fff; }
+.reporte-tool h3 { margin:0 0 10px; font-size:14px; }
+.reporte-tool select { width:100%; min-height:40px; margin-bottom:10px; border:1px solid #dbe2ea; border-radius:9px; padding:8px; }
+.resultado-reporte { margin-top:14px; }
+.resultado-reporte pre { margin:0; padding:16px; max-height:430px; overflow:auto; border-radius:12px; background:#0f172a; color:#dbeafe; font-size:12px; }
+
+@media(max-width:1180px){ .fila-tarjetas{grid-template-columns:repeat(3,1fr);} .rejilla-modulos{grid-template-columns:repeat(3,1fr);} .reporte-resumen{grid-template-columns:repeat(3,1fr);} }
+@media(max-width:760px){ .contenido{padding:18px 14px 40px;} .barra-superior{padding:14px 16px;} .fila-tarjetas{grid-template-columns:repeat(2,1fr);} .rejilla-modulos{grid-template-columns:repeat(2,1fr);} .modulo-form-grid,.reportes-herramientas{grid-template-columns:1fr;} .reporte-resumen{grid-template-columns:repeat(2,1fr);} .modulo-toolbar,.form-modulo-titulo{align-items:flex-start; flex-direction:column;} }
+@media(max-width:450px){ .fila-tarjetas,.rejilla-modulos,.reporte-resumen{grid-template-columns:1fr;} .acciones-barra{width:100%; flex-wrap:wrap;} }
+
+/* ============================================================
+   NUEVO LAYOUT PROFESIONAL: menú de módulos vertical a la izquierda
+   ============================================================ */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 285px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.menu-modulos {
+  position: sticky;
+  top: 18px;
+  margin: 0;
+  padding: 18px 12px 14px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(20, 40, 70, .06);
+}
+
+.menu-modulos-cabecera {
+  padding: 4px 8px 14px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--linea);
+}
+
+.menu-modulos-cabecera h2 { font-size: 18px; margin-bottom: 5px; }
+
+.lista-modulos {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: calc(100vh - 250px);
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.modulo-card {
+  width: 100%;
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-left: 3px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--tinta-primaria);
+  text-align: left;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .15s ease;
+}
+
+.modulo-card:hover,
+.modulo-card:focus-visible {
+  background: var(--pagina);
+  border-color: var(--borde);
+  outline: none;
+}
+
+.modulo-card.activo {
+  background: var(--acento-suave);
+  border-color: var(--borde);
+  border-left-color: var(--acento);
+}
+
+.modulo-icono {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: var(--acento-suave);
+  font-size: 18px;
+}
+
+.modulo-contenido { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.modulo-contenido strong { font-size: 13px; line-height: 1.2; }
+.modulo-contenido small { color: var(--tinta-secundaria); font-size: 11px; line-height: 1.25; }
+
+.dashboard-main { min-width: 0; }
+.dashboard-main > .tarjeta { margin-bottom: 18px; }
+.dashboard-main > .tarjeta:last-child { margin-bottom: 0; }
+
+/* En esta versión la vista del módulo ocupa todo el panel derecho. */
+.dashboard-main .tarjeta-modulo-vista { margin-top: 0; }
+
+@media (max-width: 900px) {
+  .dashboard-layout { grid-template-columns: 1fr; }
+  .menu-modulos { position: static; }
+  .lista-modulos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-height: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .lista-modulos { grid-template-columns: 1fr; }
+  .dashboard-layout { gap: 14px; }
+  .menu-modulos { padding: 14px 10px; }
+}
+
+/* ============================================================
+   DISEÑO FINAL — MENÚ LATERAL ESTILO PORTAL ACADÉMICO
+   Solo modifica la presentación visual. La lógica/API permanece igual.
+   ============================================================ */
+
+:root {
+  --menu-academico: #15577d;
+  --menu-academico-oscuro: #104a6b;
+  --menu-texto: #d9f0ff;
+  --menu-texto-activo: #ffffff;
+  --menu-hover: rgba(255,255,255,.10);
+  --menu-activo: #1f9bd1;
+}
+
+/* La estructura conserva exactamente el mismo contenido; únicamente
+   cambia la presentación del menú lateral. */
+.dashboard-layout {
+  grid-template-columns: 276px minmax(0, 1fr);
+  gap: 22px;
+  align-items: stretch;
+}
+
+.menu-modulos {
+  position: sticky;
+  top: 18px;
+  height: calc(100vh - 36px);
+  min-height: 620px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: var(--menu-academico);
+  box-shadow: 8px 0 28px rgba(15, 53, 78, .10);
+  color: #fff;
+}
+
+.menu-modulos-cabecera {
+  margin: 0;
+  padding: 22px 22px 20px;
+  border: 0;
+  background: var(--menu-academico-oscuro);
+}
+
+.menu-modulos-cabecera::before {
+  content: "SA";
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 13px;
+  border: 2px solid rgba(255,255,255,.9);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.menu-modulos-cabecera .etiqueta {
+  color: rgba(255,255,255,.72);
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.menu-modulos-cabecera h2 {
+  color: #fff;
+  font-size: 20px;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.menu-modulos-cabecera .descripcion-modulos {
+  display: none;
+}
+
+.lista-modulos {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: calc(100vh - 190px);
+  overflow-y: auto;
+  padding: 12px 0 18px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.28) transparent;
+}
+
+.lista-modulos::-webkit-scrollbar { width: 5px; }
+.lista-modulos::-webkit-scrollbar-track { background: transparent; }
+.lista-modulos::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,.25);
+  border-radius: 10px;
+}
+
+.modulo-card,
+.modulo-card.modulo-carreras,
+.modulo-card.modulo-estudiantes,
+.modulo-card.modulo-docentes,
+.modulo-card.modulo-asignaturas,
+.modulo-card.modulo-periodos,
+.modulo-card.modulo-aulas,
+.modulo-card.modulo-secciones,
+.modulo-card.modulo-matriculas,
+.modulo-card.modulo-calificaciones,
+.modulo-card.modulo-reportes {
+  position: relative;
+  width: 100%;
+  min-height: 56px;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: center;
+  gap: 11px;
+  padding: 9px 20px;
+  border: 0;
+  border-left: 4px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--menu-texto);
+  text-align: left;
+  box-shadow: none;
+  transform: none;
+}
+
+.modulo-card::before,
+.modulo-card.modulo-carreras::before,
+.modulo-card.modulo-estudiantes::before,
+.modulo-card.modulo-docentes::before,
+.modulo-card.modulo-asignaturas::before,
+.modulo-card.modulo-periodos::before,
+.modulo-card.modulo-aulas::before,
+.modulo-card.modulo-secciones::before,
+.modulo-card.modulo-matriculas::before,
+.modulo-card.modulo-calificaciones::before,
+.modulo-card.modulo-reportes::before {
+  display: none;
+}
+
+.modulo-card:hover,
+.modulo-card:focus-visible {
+  transform: none;
+  border-color: transparent;
+  border-left-color: rgba(255,255,255,.45);
+  background: var(--menu-hover);
+  color: #fff;
+  outline: none;
+}
+
+.modulo-card.activo {
+  border-color: transparent;
+  border-left-color: #fff;
+  background: var(--menu-activo);
+  color: var(--menu-texto-activo);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), inset 0 -1px 0 rgba(0,0,0,.05);
+}
+
+.modulo-icono {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #bde7ff;
+  font-size: 19px;
+}
+
+.modulo-card.activo .modulo-icono,
+.modulo-card:hover .modulo-icono {
+  color: #fff;
+}
+
+.modulo-contenido {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.modulo-contenido strong {
+  color: inherit;
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+.modulo-contenido small {
+  display: none;
+}
+
+/* El panel derecho mantiene intactas todas las funciones existentes. */
+.dashboard-main {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-modulos {
+    position: static;
+    height: auto;
+    min-height: 0;
+    border-radius: 14px;
+  }
+
+  .lista-modulos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-height: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .lista-modulos {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   NAVEGACIÓN FINAL — estilo portal académico
+   Los módulos cambian el contenido del panel derecho sin salir
+   de la página principal.
+   ============================================================ */
+.dashboard-layout {
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.menu-modulos {
+  position: sticky;
+  top: 18px;
+  height: calc(100vh - 36px);
+  min-height: 600px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: #15577d;
+  box-shadow: 8px 0 26px rgba(16, 74, 107, .12);
+}
+
+.menu-modulos-cabecera {
+  margin: 0;
+  padding: 22px 22px 18px;
+  background: #104a6b;
+  border: 0;
+}
+
+.menu-modulos-cabecera::before {
+  content: "SA";
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  border: 2px solid rgba(255,255,255,.95);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.menu-modulos-cabecera .etiqueta {
+  color: rgba(255,255,255,.72);
+  margin-bottom: 4px;
+}
+
+.menu-modulos-cabecera h2 {
+  color: #fff;
+  font-size: 20px;
+  margin: 0;
+}
+
+.menu-modulos-cabecera .descripcion-modulos { display: none; }
+
+.lista-modulos {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  padding: 12px 0 18px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.25) transparent;
+}
+
+.lista-modulos::-webkit-scrollbar { width: 5px; }
+.lista-modulos::-webkit-scrollbar-track { background: transparent; }
+.lista-modulos::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,.25);
+  border-radius: 10px;
+}
+
+.modulo-card,
+.modulo-card.modulo-carreras,
+.modulo-card.modulo-estudiantes,
+.modulo-card.modulo-docentes,
+.modulo-card.modulo-asignaturas,
+.modulo-card.modulo-periodos,
+.modulo-card.modulo-aulas,
+.modulo-card.modulo-secciones,
+.modulo-card.modulo-matriculas,
+.modulo-card.modulo-calificaciones,
+.modulo-card.modulo-reportes {
+  position: relative;
+  width: 100%;
+  min-height: 54px;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border: 0;
+  border-left: 4px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: #d9f0ff;
+  text-align: left;
+  box-shadow: none;
+  transform: none;
+}
+
+.modulo-card::before,
+.modulo-card.modulo-carreras::before,
+.modulo-card.modulo-estudiantes::before,
+.modulo-card.modulo-docentes::before,
+.modulo-card.modulo-asignaturas::before,
+.modulo-card.modulo-periodos::before,
+.modulo-card.modulo-aulas::before,
+.modulo-card.modulo-secciones::before,
+.modulo-card.modulo-matriculas::before,
+.modulo-card.modulo-calificaciones::before,
+.modulo-card.modulo-reportes::before { display: none; }
+
+.modulo-card:hover,
+.modulo-card:focus-visible {
+  background: rgba(255,255,255,.10);
+  border-left-color: rgba(255,255,255,.55);
+  border-right-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  color: #fff;
+  outline: none;
+}
+
+.modulo-card.activo {
+  background: #1f9bd1;
+  border-left-color: #fff;
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), inset 0 -1px 0 rgba(0,0,0,.06);
+}
+
+.modulo-icono {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: transparent;
+  color: #bde7ff;
+  font-size: 19px;
+}
+
+.modulo-card.activo .modulo-icono,
+.modulo-card:hover .modulo-icono { color: #fff; }
+
+.modulo-contenido { gap: 0; }
+.modulo-contenido strong {
+  color: inherit;
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+.modulo-contenido small { display: none; }
+
+.dashboard-main { min-width: 0; }
+.dashboard-main > .tarjeta { margin-bottom: 18px; }
+
+.panel-inicio {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(15,23,42,.07);
+  padding: 28px;
+  min-height: 250px;
+}
+
+.panel-inicio-hero h2 {
+  margin: 4px 0 8px;
+  font-size: 28px;
+  color: #172033;
+}
+
+.panel-inicio-hero p:last-child {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.panel-inicio-ayuda {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+  padding: 16px;
+  border: 1px solid #e5eaf2;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.panel-ayuda-icono {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #e6f6e6;
+  color: #15803d;
+  font-weight: 800;
+}
+
+.panel-inicio-ayuda strong,
+.panel-inicio-ayuda small { display: block; }
+.panel-inicio-ayuda strong { color: #172033; font-size: 14px; }
+.panel-inicio-ayuda small { margin-top: 3px; color: #64748b; font-size: 12px; }
+
+.panel-estudiantes { min-width: 0; }
+.panel-estudiantes .tarjeta { margin-bottom: 18px; }
+.panel-estudiantes .tarjeta:last-child { margin-bottom: 0; }
+
+.tarjeta-modulo-vista {
+  margin: 0;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .dashboard-layout { grid-template-columns: 1fr; }
+  .menu-modulos {
+    position: static;
+    height: auto;
+    min-height: 0;
+    border-radius: 14px;
+  }
+  .lista-modulos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    max-height: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .lista-modulos { grid-template-columns: 1fr; }
+  .panel-inicio { padding: 20px; }
+}
